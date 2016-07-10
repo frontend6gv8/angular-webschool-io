@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Be MEAN - Aula 4 - Retrieve</title>
+</head>
+<body ng-controller="UserController as User">
+	<h1>{{User.titulo}}</h1>
+	<label for="busca">Busca: </label><input type="text" name="busca" ng-model="searchUsers">
+	<table>
+		<thead>
+			<tr>
+				<th align="left" ng-repeat="(key, value) in User.users[0]">{{key}}</th>
+			</tr>
+			<tbody>
+				<tr ng-repeat=" user in User.users | orderBy:'email':false | filter:searchUsers ">
+					<td ng-repeat="(key, value) in user">{{value}}</td>
+				</tr>
+			</tbody>
+		</thead>
+	</table>
+
+	<script src="../bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript">
+		angular.module('app', [])
+			.controller("UserController", UserController)
+			.controller("CursosController", CursosController);
+
+		function UserController(){
+			var vm = this;
+			vm.titulo = "Listagem de Usuarios";
+			vm.users = [
+				{name: "Pedro", email: "pedro@gmail.com"},
+				{name: "Bruno", email: "bruno@gmail.com"}
+			];
+		}
+
+		function CursosController(){
+			var vm = this;
+			vm.titulo = "Listagem de Cursos";
+			vm.cursos = [
+				{name: "Be MEAN", teacher:"Jean Suissa"}
+			,	{name: "Arduino", teacher: "Andre Giovanne"}
+			];
+		}
+	</script>
+</body>
+</html>

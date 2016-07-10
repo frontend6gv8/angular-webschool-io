@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Be MEAN - Aula 3 - Controller</title>
+</head>
+<body ng-controller="UserController">
+	<h1>{{titulo}}</h1>
+
+	<ul>
+		<li ng-repeat="user in users">
+			{{user.name}} - {{user.email}}
+		</li>
+	</ul>
+
+	<script src="../bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript">
+		angular.module('app', [])
+			.controller("UserController", UserController);
+
+		function UserController($scope){
+			$scope.titulo = "Seguindo o Styleguide do Jhon Papa";
+
+			$scope.users = [
+				{name: "Pedro", email: "pedro@gmail.com"},
+				{name: "Bruno", email: "bruno@gmail.com"}
+			];
+		}
+		UserController['$inject'] = ['$scope'];
+	</script>
+</body>
+</html>

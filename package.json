@@ -1,0 +1,16 @@
+{
+  "name": "angular",
+  "version": "0.0.1",
+  "description": "Curso de Angular 1 da WebSchool.io",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "angular",
+    "webschool.io",
+    "suissa"
+  ],
+  "author": "brunohenrique774@gmail.com",
+  "license": "ISC"
+}

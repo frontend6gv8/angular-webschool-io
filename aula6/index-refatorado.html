@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Be MEAN - Aula 6 - Delete</title>
+	<link rel="stylesheet" href="../bower_components/Materialize/dist/css/materialize.min.css">
+	<style>
+		.wrapper{
+			max-width: 600px;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body ng-controller="UserController as User">
+	<div class="row wrapper">
+		<h3>{{User.titulo}}</h3>
+
+		<div class="col s12">
+			<div class="form-user">
+				<input type="text" name="name" ng-model="User.form.name" placeholder="Nome:">
+				<input type="email" name="email" ng-model="User.form.email" placeholder="Email:">
+				<button ng-click="User.add(User.form)" class="btn btn-large green waves-effect waves-light col s12">Adicionar</button>
+			</div>
+		</div>
+
+		<table>
+			<thead>
+				<tr>
+					<td colspan="3">
+						<input type="text" name="busca" ng-model="searchUsers" placeholder="Busca:">
+					</td>
+				</tr>
+				<tr>
+					<th></th>
+					<th align="left">Nome</th>
+					<th align="left">Email</th>
+				</tr>
+				<tbody>
+					<tr ng-repeat=" user in User.users | orderBy:'email':false | filter:searchUsers ">
+						<td>
+							<input type="checkbox" id="user-{{ $index }}" ng-model="user.selecionado">
+							<label for="user-{{ $index }}">
+						</td>
+						<td>{{ user.name }}</td>
+						<td>{{ user.email }}</td>
+						<!-- <td><button ng-click="removeByEmail(user.email)" class="btn btn-large red">Delete</button></td> -->
+					</tr>
+				</tbody>
+			</thead>
+		</table>
+		<button ng-click="User.remove(User.users)" class="btn btn-large red waves-effect waves-light col s12">Remover</button>
+	</div>
+	<script src="../bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript">
+		angular.module('app', [])
+			.controller("UserController", UserController);
+
+		function UserController(){
+			var vm = this;
+			vm.titulo = "Listagem de Usuarios";
+			vm.users = [
+				{name: "Pedro Antonio", email: "pedro@gmail.com"},
+				{name: "Bruno Henrique", email: "bruno@gmail.com"}
+			];
+			function getKeyLength(){
+				return Object.keys(angular.copy(vm.users[0])).length;
+			}
+			vm.keyslength = getKeyLength();
+			// Adicionar uma funcao no controller
+			vm.add = add;
+			function add(user){
+				vm.users.push(angular.copy(user));
+			}
+			
+			vm.removeByEmail = removeByEmail;
+			function removeByEmail(email){
+				vm.users = vm.users.filter(function(el){ return el.email !== email });
+			}
+			
+			vm.remove = remove;
+			function remove(users){
+				vm.users = users.filter(function(el){ return !el.selecionado });
+			}
+		}
+	</script>
+</body>
+</html>

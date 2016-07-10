@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<!-- aplicacao de filtros -->
+	<!-- passar parametros para o filtro -->
+	<title>{{title | uppercase | reverseString | truncate:5:" ..."}}</title>
+</head>
+<body>
+	<h1>Digite o titulo da página(Com Filtros)</h1>
+	<input type="text" name="" ng-model="title">
+
+	<script src="../bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript">
+		angular.module('app', [])
+			.filter('reverseString', function(){
+				return function(text){
+					if(text) return text.split("").reverse().join("");
+				}
+			})
+			.filter('truncate', function(){
+				return function(text, length, end){
+					if(text){
+						if(isNaN(length)) length = 10;
+						if(end == undefined) end = "...";
+
+						if(text.length <= length)
+							return text;
+						else
+							return String(text).substring(0, length) + end;
+					}
+				}
+			});
+	</script>
+</body>
+</html>

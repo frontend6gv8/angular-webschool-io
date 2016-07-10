@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Be MEAN - Aula 3 - Controller</title>
+</head>
+<body ng-controller="UserController as User">
+	<h1>{{User.titulo}}</h1>
+
+	<ul>
+		<li ng-repeat="user in User.users">
+			{{user.name}} - {{user.email}}
+		</li>
+	</ul>
+
+	<div ng-controller="CursosController as Curso">
+		<h1>{{Curso.titulo}}</h1>
+
+		<ul>
+			<li ng-repeat="curso in Curso.cursos">
+				{{curso.name}} - {{curso.teacher}}
+			</li>
+		</ul>
+	</div>
+
+	<script src="../bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript">
+		angular.module('app', [])
+			.controller("UserController", UserController)
+			.controller("CursosController", CursosController);
+
+		function UserController(){
+			var vm = this;
+			vm.titulo = "Listagem de Usuarios";
+			vm.users = [
+				{name: "Pedro", email: "pedro@gmail.com"},
+				{name: "Bruno", email: "bruno@gmail.com"}
+			];
+		}
+
+		function CursosController(){
+			var vm = this;
+			vm.titulo = "Listagem de Cursos";
+			vm.cursos = [
+				{name: "Be MEAN", teacher:"Jean Suissa"}
+			,	{name: "Arduino", teacher: "Andre Giovanne"}
+			];
+		}
+	</script>
+</body>
+</html>

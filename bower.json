@@ -1,0 +1,26 @@
+{
+  "name": "angular",
+  "description": "Curso de Angular 1 da WebSchool.io",
+  "main": "index.html",
+  "authors": [
+    "brunohenrique774@gmail.com"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "angular",
+    "webschool.io",
+    "suissa"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.5.7",
+    "Materialize": "materialize#^0.97.6"
+  }
+}
