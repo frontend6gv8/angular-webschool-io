@@ -21,6 +21,7 @@
   ],
   "dependencies": {
     "angular": "1.5.7",
-    "Materialize": "materialize#^0.97.6"
+    "Materialize": "materialize#^0.97.6",
+    "angular-animate-css": "ng-animate-css#^0.0.4"
   }
 }

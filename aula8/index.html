@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<title>Be MEAN - Aula 8 - Animation</title>
+	<link rel="stylesheet" href="../bower_components/Materialize/dist/css/materialize.min.css">
+	<link rel="stylesheet" href="../bower_components/angular-animate-css/buid/nga.all.css">
+	<style>
+		.wrapper{
+			max-width: 600px;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body ng-controller="UserController as User">
+	<section class="row wrapper">
+		<h3>{{User.titulo}}</h3>
+
+		<div class="col s12">
+			<input type="checkbox" id="mycheck" ng-model="User.showUsers">
+			<label for="mycheck">Exibir os Usuarios</label>
+		</div>
+
+		<table ng-show="User.showUsers">
+			<thred>
+				<tr>
+					<th colspan="2"><input type="text" name="" ng-model="busca" placeholder="Buscar"></th>
+				</tr>
+				<tr>
+					<th ng-repeat="(key, value) in User.users[0]">{{ key }}</th>
+				</tr>
+				<tbody>
+					<tr ng-repeat="user in User.users | filter:busca">
+						<td ng-repeat="(key, value) in user">{{value}}</td>
+						<td><button class="btn btn-large blue col s12"/>Editar</td>
+					</tr>
+				</tbody>
+			</thred>
+		</table>
+	</section>
+	<script src="../bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript">
+		angular.module('app', [])
+			.controller("UserController", UserController);
+
+		function UserController(){
+			var vm = this;
+			vm.titulo = "Animações com Angular";
+
+			vm.users = [
+				{name: "Pedro Antonio", email: "pedroantonio@gmail.com"},
+				{name: "Bruno Henrique", email: "brunohenrique@gmail.com"}
+			];
+		}
+	</script>
+</body>
+</html>
